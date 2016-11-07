@@ -1,5 +1,5 @@
 {
-    "name": "t4web/composer-lock-parser",
+    "name": "gigib82/composer-lock-parser",
     "description": "OOP reader of composer.lock file.",
     "type": "library",
     "license": "BSD-3-Clause",
@@ -12,6 +12,10 @@
             "name": "Max Gulturyan",
             "email": "gulturyan@gmail.com",
             "homepage": "http://about.me/maxgu"
+        },
+        {
+            "name": "Luigi Belli",
+            "email": "gigib82@gmail.com",
         }
     ],
     "require": {
