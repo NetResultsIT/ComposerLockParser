@@ -6,7 +6,7 @@
     "keywords": [
         "composer.lock reader"
     ],
-    "homepage": "https://github.com/t4web/ComposerLockParser",
+    "homepage": "https://github.com/gigib82/ComposerLockParser",
     "authors": [
         {
             "name": "Max Gulturyan",
