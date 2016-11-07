@@ -62,6 +62,11 @@ class Package {
     private $description;
 
     /**
+     * @var string
+     */
+    private $homepage;
+
+    /**
      * @var array
      */
     private $keywords;
@@ -73,7 +78,7 @@ class Package {
 
     private function __construct($name, $version, array $source, array $dist, array $require,
         array $requireDev, $type, array $autoload, array $license, array $authors, $description,
-        array $keywords, DateTime $time)
+        $homepage, array $keywords, DateTime $time)
     {
         $this->name = $name;
         $this->version = $version;
@@ -86,6 +91,7 @@ class Package {
         $this->license = $license;
         $this->authors = $authors;
         $this->description = $description;
+        $this->homepage = $homepage;
         $this->keywords = $keywords;
         $this->time = $time;
     }
@@ -97,16 +103,33 @@ class Package {
             $packageInfo['version'],
             $packageInfo['source'],
             $packageInfo['dist'],
-            $packageInfo['require'],
+            isset($packageInfo['require']) ? $packageInfo['require'] : [],
             isset($packageInfo['requireDev']) ? $packageInfo['requireDev'] : [],
             $packageInfo['type'],
-            $packageInfo['autoload'],
+            isset($packageInfo['autoload']) ? $packageInfo['autoload'] : [],
             isset($packageInfo['license']) ? $packageInfo['license'] : [],
             isset($packageInfo['authors']) ? $packageInfo['authors'] : [],
             $packageInfo['description'],
-            $packageInfo['keywords'],
+            isset($packageInfo['homepage']) ? $packageInfo['homepage'] : null,
+            isset($packageInfo['keywords']) ? $packageInfo['keywords'] : [],
             new DateTime($packageInfo['time'])
         );
+    }
+
+    /**
+     * @return string
+     */
+    public function getNamespace()
+    {
+        $namespace = [];
+
+        if (isset($this->autoload['psr-0'])) {
+            $namespace = $this->autoload['psr-0'];
+        } elseif (isset($this->autoload['psr-4'])) {
+            $namespace = $this->autoload['psr-4'];
+        }
+
+        return trim(key($namespace), '\\');
     }
 
     /**
@@ -126,19 +149,98 @@ class Package {
     }
 
     /**
-     * @return string
+     * @return array
      */
-    public function getNamespace()
+    public function getSource()
     {
-        $namespace = '';
-
-        if (isset($this->autoload['psr-0'])) {
-            $namespace = $this->autoload['psr-0'];
-        } elseif (isset($this->autoload['psr-4'])) {
-            $namespace = $this->autoload['psr-4'];
-        }
-
-        return trim(key($namespace), '\\');
+        return $this->source;
     }
 
-} 
+    /**
+     * @return array
+     */
+    public function getDist()
+    {
+        return $this->dist;
+    }
+
+    /**
+     * @return array
+     */
+    public function getRequire()
+    {
+        return $this->require;
+    }
+
+    /**
+     * @return array
+     */
+    public function getRequireDev()
+    {
+        return $this->requireDev;
+    }
+
+    /**
+     * @return string
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    /**
+     * @return array
+     */
+    public function getAutoload()
+    {
+        return $this->autoload;
+    }
+
+    /**
+     * @return array
+     */
+    public function getLicense()
+    {
+        return $this->license;
+    }
+
+    /**
+     * @return array
+     */
+    public function getAuthors()
+    {
+        return $this->authors;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * @return string
+     */
+    public function getHomepage()
+    {
+        return $this->homepage;
+    }
+
+    /**
+     * @return array
+     */
+    public function getKeywords()
+    {
+        return $this->keywords;
+    }
+
+    /**
+     * @return DateTime
+     */
+    public function getTime()
+    {
+        return $this->time;
+    }
+}
