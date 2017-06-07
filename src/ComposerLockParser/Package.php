@@ -109,7 +109,7 @@ class Package {
             isset($packageInfo['autoload']) ? $packageInfo['autoload'] : [],
             isset($packageInfo['license']) ? $packageInfo['license'] : [],
             isset($packageInfo['authors']) ? $packageInfo['authors'] : [],
-            $packageInfo['description'],
+            isset($packageInfo['description']) ? $packageInfo['description'] : null,
             isset($packageInfo['homepage']) ? $packageInfo['homepage'] : null,
             isset($packageInfo['keywords']) ? $packageInfo['keywords'] : [],
             new DateTime($packageInfo['time'])
