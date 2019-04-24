@@ -1,12 +1,12 @@
 {
-    "name": "gigib82/composer-lock-parser",
+    "name": "netresultsit/composer-lock-parser",
     "description": "OOP reader of composer.lock file.",
     "type": "library",
     "license": "BSD-3-Clause",
     "keywords": [
         "composer.lock reader"
     ],
-    "homepage": "https://github.com/gigib82/ComposerLockParser",
+    "homepage": "https://github.com/NetResultsIT/ComposerLockParser",
     "authors": [
         {
             "name": "Max Gulturyan",
